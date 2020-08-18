@@ -4,6 +4,9 @@ WORKDIR /app
 
 EXPOSE 80
 
+ENV PATH="${PATH}:/root/.dotnet/tools"
+RUN ["dotnet", "tool", "install", "--global", "dotnet-ef"]
+
 RUN ["dotnet", "restore"]
 RUN ["dotnet", "build"]
 
