@@ -9,6 +9,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
+using c1.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace c1
 {
     public class Startup
@@ -23,6 +26,7 @@ namespace c1
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<C1Context>(options => options.UseSqlServer(Configuration["database:connection"]));
             services.AddControllersWithViews();
         }
 
